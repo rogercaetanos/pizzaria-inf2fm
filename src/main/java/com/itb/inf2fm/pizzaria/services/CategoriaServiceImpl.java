@@ -23,6 +23,7 @@ public class CategoriaServiceImpl implements CategoriaService {
     @Override
     @Transactional
     public Categoria salvarCategoria(Categoria categoria) {
+        categoria.setCodStatus(true);
         if(!categoria.validarCategoria()) {
             throw new BadRequest(categoria.getMensagemErro());
         }

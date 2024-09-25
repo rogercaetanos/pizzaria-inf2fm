@@ -1,5 +1,6 @@
 package com.itb.inf2fm.pizzaria.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -22,6 +23,7 @@ public class Categoria {
 
     // Atributos de apoio
     @Transient
+    @JsonIgnore
     private String mensagemErro = "";
     @Transient
     private boolean isValid = true;
@@ -77,6 +79,10 @@ public class Categoria {
     }
 
     public boolean validarCategoria() {
+        if(nome == null || nome.isEmpty()) {
+            mensagemErro += "O nome da categoria é obrigatório:";
+            isValid = false;
+        }
 
         return isValid;
     }
